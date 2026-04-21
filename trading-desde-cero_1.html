@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading desde 0 — Tu Guía Real</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060810;
+  --s1: #0c0f1a;
+  --s2: #111520;
+  --border: #1c2035;
+  --border2: #252840;
+  --cyan: #00e5ff;
+  --cyan2: #00b8cc;
+  --lime: #b8ff00;
+  --lime2: #90cc00;
+  --purple: #7c3aed;
+  --pink: #ff2d78;
+  --orange: #ff6b00;
+  --gold: #ffc200;
+  --text: #dde2f0;
+  --text2: #7a82a0;
+  --text3: #3a4060;
+  --green: #00ff88;
+  --red: #ff3355;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Archivo', sans-serif;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ANIMATED BG */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background: 
+    radial-gradient(ellipse 60% 40% at 10% 20%, rgba(0,229,255,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 90% 80%, rgba(124,58,237,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 50% 50%, rgba(184,255,0,0.03) 0%, transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+
+.wrap { max-width:880px; margin:0 auto; padding:20px 16px 80px; position:relative; z-index:1; }
+
+/* ===== HERO ===== */
+.hero {
+  padding: 64px 0 48px;
+  text-align: center;
+}
+
+.hero-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,229,255,0.08);
+  border: 1px solid rgba(0,229,255,0.25);
+  padding: 7px 18px;
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--cyan);
+  letter-spacing: 2px;
+  margin-bottom: 28px;
+}
+
+.hero-chip::before { content:'●'; animation: blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+.hero h1 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(40px, 9vw, 82px);
+  line-height: 0.95;
+  letter-spacing: -2px;
+  color: #fff;
+}
+
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--cyan), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  margin: 24px auto 0;
+  max-width: 520px;
+  font-size: 16px;
+  color: var(--text2);
+  line-height: 1.7;
+}
+
+.hero-badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.badge {
+  background: var(--s2);
+  border: 1px solid var(--border2);
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text2);
+}
+
+.badge span { color: var(--lime); font-weight: 700; }
+
+/* ===== DIVIDER ===== */
+.sep {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border2), transparent);
+  margin: 48px 0;
+}
+
+/* ===== SECTION HEADER ===== */
+.sh {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.sh-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--cyan);
+  background: rgba(0,229,255,0.1);
+  border: 1px solid rgba(0,229,255,0.2);
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+
+.sh-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(22px, 4vw, 34px);
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+/* ===== BIG CARDS ===== */
+.bcard {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  transition: border-color 0.2s;
+}
+
+.bcard:hover { border-color: rgba(0,229,255,0.3); }
+
+.bcard-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.bcard-icon { font-size: 28px; flex-shrink: 0; }
+
+.bcard-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 17px;
+  color: #fff;
+}
+
+.bcard-sub {
+  font-size: 12px;
+  color: var(--text2);
+  margin-top: 2px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.bcard-body { padding: 20px 24px; }
+
+/* ===== SMALL CARDS ===== */
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 16px 0; }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+
+.scard {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.scard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+
+.scard.c-cyan::before { background: var(--cyan); }
+.scard.c-lime::before { background: var(--lime); }
+.scard.c-purple::before { background: var(--purple); }
+.scard.c-orange::before { background: var(--orange); }
+.scard.c-gold::before { background: var(--gold); }
+.scard.c-pink::before { background: var(--pink); }
+.scard.c-green::before { background: var(--green); }
+.scard.c-red::before { background: var(--red); }
+
+.scard-emoji { font-size: 24px; margin-bottom: 10px; display: block; }
+
+.scard-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.scard-text { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+.scard-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 100px;
+  margin-top: 10px;
+  display: inline-block;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.tag-free { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.2); }
+.tag-must { background: rgba(255,45,120,0.1); color: var(--pink); border: 1px solid rgba(255,45,120,0.2); }
+.tag-key { background: rgba(0,229,255,0.1); color: var(--cyan); border: 1px solid rgba(0,229,255,0.2); }
+
+/* ===== NOTE BOXES ===== */
+.note {
+  background: rgba(0,229,255,0.05);
+  border: 1px solid rgba(0,229,255,0.15);
+  border-left: 3px solid var(--cyan);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.7;
+  margin: 12px 0;
+}
+
+.note strong { color: var(--cyan); }
+
+.warn {
+  background: rgba(255,107,0,0.06);
+  border: 1px solid rgba(255,107,0,0.2);
+  border-left: 3px solid var(--orange);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.7;
+  margin: 12px 0;
+}
+
+.warn strong { color: var(--orange); }
+
+.danger {
+  background: rgba(255,51,85,0.06);
+  border: 1px solid rgba(255,51,85,0.2);
+  border-left: 3px solid var(--red);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.7;
+  margin: 12px 0;
+}
+
+.danger strong { color: var(--red); }
+
+/* ===== TABLE ===== */
+.t {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 14px 0;
+}
+
+.t th {
+  background: rgba(0,229,255,0.08);
+  border: 1px solid var(--border2);
+  padding: 10px 14px;
+  text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--cyan);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.t td {
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  color: var(--text2);
+  vertical-align: top;
+}
+
+.t tr:hover td {
+  background: rgba(255,255,255,0.02);
+  color: var(--text);
+}
+
+.t .hl { color: #fff; font-weight: 600; }
+.t .g { color: var(--green); font-weight: 600; }
+.t .r { color: var(--red); font-weight: 600; }
+.t .y { color: var(--gold); font-weight: 600; }
+
+/* ===== STEPS ===== */
+.steps { display: grid; gap: 0; }
+
+.step {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  border-bottom: 1px solid var(--border);
+}
+
+.step:last-child { border-bottom: none; }
+
+.step-n {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 22px;
+  color: var(--cyan);
+  background: rgba(0,229,255,0.05);
+  border-right: 1px solid var(--border);
+}
+
+.step-body { padding: 16px 20px; }
+
+.step-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.step-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+/* ===== CHECKLIST ===== */
+.cl { list-style: none; display: grid; gap: 6px; margin: 12px 0; }
+
+.cl li {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text2);
+  padding: 10px 14px;
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  align-items: flex-start;
+  line-height: 1.5;
+}
+
+.cl li::before {
+  content: '→';
+  color: var(--lime);
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+/* ===== PRICE TABLE ===== */
+.price-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.price-box {
+  background: var(--s2);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.price-box.featured {
+  border-color: var(--cyan);
+  background: rgba(0,229,255,0.04);
+}
+
+.price-amount {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 32px;
+  color: var(--lime);
+  line-height: 1;
+}
+
+.price-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
+.price-desc {
+  font-size: 12px;
+  color: var(--text2);
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* ===== YOUTUBE CARDS ===== */
+.yt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin: 16px 0; }
+
+.yt-card {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.yt-card:hover {
+  border-color: rgba(255,0,0,0.4);
+  transform: translateY(-2px);
+}
+
+.yt-icon { font-size: 22px; margin-bottom: 10px; }
+
+.yt-channel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #ff4444;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.yt-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.yt-why { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+.yt-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 100px;
+  margin-top: 10px;
+  display: inline-block;
+  background: rgba(255,68,68,0.1);
+  color: #ff4444;
+  border: 1px solid rgba(255,68,68,0.2);
+}
+
+/* ===== TIMELINE ===== */
+.tl { display: grid; gap: 0; }
+
+.tl-item {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.tl-item:last-child { border-bottom: none; }
+
+.tl-time {
+  background: var(--s2);
+  border-right: 1px solid var(--border);
+  padding: 16px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.tl-month {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.3;
+}
+
+.tl-body {
+  padding: 16px 20px;
+}
+
+.tl-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.tl-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+.tl-milestone .tl-title { color: var(--lime); }
+.tl-milestone .tl-time { background: rgba(184,255,0,0.06); }
+.tl-milestone .tl-month { color: var(--lime); }
+
+/* ===== BROKER COMPARE ===== */
+.broker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+
+.broker-card {
+  background: var(--s2);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.broker-card.best { border-color: var(--lime); }
+
+.broker-logo { font-size: 32px; margin-bottom: 10px; }
+.broker-name { font-family: 'Archivo Black', sans-serif; font-size: 16px; color: #fff; margin-bottom: 4px; }
+.broker-min { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--lime); margin-bottom: 8px; }
+.broker-pros { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+/* ===== STRATEGY VISUAL ===== */
+.strat {
+  background: var(--s1);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 16px 0;
+}
+
+.strat-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 18px;
+  color: var(--lime);
+  margin-bottom: 4px;
+}
+
+.strat-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text3);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.strat-body { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+
+.strat-item {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.strat-item-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.strat-item-val {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ===== FIRST TRADE ===== */
+.trade-flow { display: grid; gap: 0; border: 1px solid var(--border2); border-radius: 10px; overflow: hidden; }
+
+.tf-step {
+  display: flex;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.tf-step:last-child { border-bottom: none; }
+
+.tf-num {
+  width: 28px;
+  height: 28px;
+  background: var(--cyan);
+  color: var(--bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.tf-text { font-size: 13px; color: var(--text2); line-height: 1.6; padding-top: 3px; }
+.tf-text strong { color: #fff; }
+
+/* ===== MISTAKE CARDS ===== */
+.mistakes { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin: 16px 0; }
+
+.mistake {
+  background: rgba(255,51,85,0.05);
+  border: 1px solid rgba(255,51,85,0.15);
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.mistake-n {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 36px;
+  color: rgba(255,51,85,0.2);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.mistake-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+
+.mistake-text { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+/* ===== QUOTE ===== */
+.quote {
+  border-left: 3px solid var(--lime);
+  padding: 16px 20px;
+  margin: 20px 0;
+  font-size: 16px;
+  color: var(--text);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.quote cite {
+  display: block;
+  font-style: normal;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--lime);
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  padding: 48px 0 24px;
+  border-top: 1px solid var(--border2);
+  margin-top: 60px;
+}
+
+.footer-big {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(28px, 6vw, 52px);
+  color: #fff;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+
+.footer-big em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--cyan), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: 2px;
+}
+
+@media(max-width:600px){
+  .grid2,.grid3{grid-template-columns:1fr;}
+  .price-row{grid-template-columns:1fr;}
+  .tl-item{grid-template-columns:80px 1fr;}
+  .strat-body{grid-template-columns:1fr 1fr;}
+  .mistakes{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-chip">LIVE · TU CAMINO REAL EN TRADING</div>
+    <h1>APRENDE<br><em>TRADING</em><br>DESDE CERO</h1>
+    <p class="hero-sub">
+      Empiezas sabiendo solo que se "compra y se vende". Terminas operando con estrategia, disciplina y resultados reales — con $10 a $15 para practicar.
+    </p>
+    <div class="hero-badges">
+      <div class="badge">Inversión inicial: <span>$10–15 USD</span></div>
+      <div class="badge">Tiempo diario: <span>1–2 horas</span></div>
+      <div class="badge">Herramientas: <span>100% gratis</span></div>
+      <div class="badge">País: <span>🇨🇴 Colombia</span></div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SECCIÓN 0: QUÉ ES REALMENTE -->
+  <div class="sh"><span class="sh-num">CAP 00</span><span class="sh-title">¿Qué es el trading EN REALIDAD?</span></div>
+
+  <div class="note">
+    <strong>La definición simple:</strong> Trading es comprar algo a un precio y venderlo más caro (o venderlo caro y recomprarlo barato). El mercado sube y baja constantemente. Tu trabajo es aprovechar esos movimientos.
+  </div>
+
+  <div class="grid2">
+    <div class="scard c-cyan">
+      <span class="scard-emoji">📈</span>
+      <div class="scard-title">Long (Comprar)</div>
+      <div class="scard-text">Compras creyendo que el precio va a subir. Lo vendes más caro. La diferencia es tu ganancia. Es lo más intuitivo.</div>
+      <span class="scard-tag tag-key">El más común al inicio</span>
+    </div>
+    <div class="scard c-pink">
+      <span class="scard-emoji">📉</span>
+      <div class="scard-title">Short (Vender corto)</div>
+      <div class="scard-text">Vendes algo que no tienes esperando que baje para recomprarlo más barato. Puedes ganar cuando el mercado cae. Más avanzado.</div>
+      <span class="scard-tag tag-must">Para después</span>
+    </div>
+  </div>
+
+  <div class="grid3">
+    <div class="scard c-lime">
+      <span class="scard-emoji">🏛️</span>
+      <div class="scard-title">Acciones</div>
+      <div class="scard-text">Pedacitos de empresas reales. Apple, Tesla, Nvidia. Cuando compras una acción, eres dueño de una fracción de esa empresa.</div>
+    </div>
+    <div class="scard c-cyan">
+      <span class="scard-emoji">🧺</span>
+      <div class="scard-title">ETFs</div>
+      <div class="scard-text">Canastas de acciones. SPY tiene las 500 empresas más grandes de EE.UU. Con una compra tienes exposición a todas.</div>
+    </div>
+    <div class="scard c-orange">
+      <span class="scard-emoji">🪙</span>
+      <div class="scard-title">Cripto</div>
+      <div class="scard-text">Bitcoin, Solana, Ethereum. Activos digitales. Muy volátiles — pueden subir o bajar 10% en un día. Ya los tienes en Binance.</div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SECCIÓN 1: TIPOS DE TRADING -->
+  <div class="sh"><span class="sh-num">CAP 01</span><span class="sh-title">Tipos de trading — ¿cuál es para ti?</span></div>
+
+  <table class="t">
+    <thead>
+      <tr><th>Tipo</th><th>Duración</th><th>Tiempo requerido</th><th>Dificultad</th><th>Para ti ahora</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="hl">Scalping</td>
+        <td>Segundos a minutos</td>
+        <td>Pantalla todo el tiempo</td>
+        <td class="r">Muy alta</td>
+        <td class="r">No todavía</td>
+      </tr>
+      <tr>
+        <td class="hl">Day Trading</td>
+        <td>Minutos a horas</td>
+        <td>1–3 horas diarias</td>
+        <td class="y">Alta</td>
+        <td class="g">✅ Sí — ideal con $10-15</td>
+      </tr>
+      <tr>
+        <td class="hl">Swing Trading</td>
+        <td>Días a semanas</td>
+        <td>30 min al día</td>
+        <td class="g">Media</td>
+        <td class="g">✅ Sí — muy recomendado</td>
+      </tr>
+      <tr>
+        <td class="hl">Position Trading</td>
+        <td>Semanas a meses</td>
+        <td>Mínimo</td>
+        <td class="g">Baja</td>
+        <td class="g">✅ Lo que ya haces en Trii</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>Recomendación para ti:</strong> Empieza con <strong>Swing Trading</strong>. Menos estrés, más tiempo para analizar, compatible con el aprendizaje. Cuando tengas más experiencia, prueba Day Trading.
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- SECCIÓN 2: LOS 5 PILARES -->
+  <div class="sh"><span class="sh-num">CAP 02</span><span class="sh-title">Los 5 pilares que todo trader debe dominar</span></div>
+
+  <div class="bcard">
+    <div class="bcard-head">
+      <div class="bcard-icon">🕯️</div>
+      <div>
+        <div class="bcard-title">Pilar 1 — Análisis técnico</div>
+        <div class="bcard-sub">Leer el gráfico · Velas · Niveles · Patrones</div>
+      </div>
+    </div>
+    <div class="bcard-body">
+      <div class="grid3">
+        <div class="scard c-cyan">
+          <div class="scard-title">Velas japonesas</div>
+          <div class="scard-text">Cada vela muestra apertura, cierre, máximo y mínimo de un período. Son el idioma del mercado. Sin esto no puedes leer nada.</div>
+          <span class="scard-tag tag-must">Semana 1</span>
+        </div>
+        <div class="scard c-cyan">
+          <div class="scard-title">Soporte y resistencia</div>
+          <div class="scard-text">Pisos y techos donde el precio rebota. La base de todas las estrategias. Donde entras y donde pones tu stop.</div>
+          <span class="scard-tag tag-must">Semana 2</span>
+        </div>
+        <div class="scard c-cyan">
+          <div class="scard-title">Tendencias</div>
+          <div class="scard-text">Mercado alcista (sube), bajista (baja), lateral (se mueve en rango). Opera siempre a favor de la tendencia.</div>
+          <span class="scard-tag tag-must">Semana 2</span>
+        </div>
+        <div class="scard c-cyan">
+          <div class="scard-title">EMA 9 y 21</div>
+          <div class="scard-text">Medias móviles que muestran la dirección. EMA9 sobre EMA21 = tendencia alcista. Esencial para el timing.</div>
+          <span class="scard-tag tag-key">Semana 3</span>
+        </div>
+        <div class="scard c-cyan">
+          <div class="scard-title">VWAP</div>
+          <div class="scard-text">Precio promedio real del día. Las instituciones lo usan de referencia. Sobre VWAP = alcista. Bajo = bajista.</div>
+          <span class="scard-tag tag-key">Semana 3</span>
+        </div>
+        <div class="scard c-cyan">
+          <div class="scard-title">Volumen</div>
+          <div class="scard-text">El detector de mentiras. Una subida sin volumen es débil. Con volumen alto es real. Siempre confirmar.</div>
+          <span class="scard-tag tag-key">Semana 3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bcard">
+    <div class="bcard-head">
+      <div class="bcard-icon">⚖️</div>
+      <div>
+        <div class="bcard-title">Pilar 2 — Gestión de riesgo</div>
+        <div class="bcard-sub">Lo más importante · Lo que te mantiene vivo en el mercado</div>
+      </div>
+    </div>
+    <div class="bcard-body">
+      <div class="grid2">
+        <div class="scard c-red">
+          <div class="scard-title">Regla del 1-2%</div>
+          <div class="scard-text">Con $15 → nunca pierdas más de $0.30 por operación. Parece poco pero te da 50 oportunidades de aprender sin quebrar.</div>
+          <span class="scard-tag tag-must">LEY ABSOLUTA</span>
+        </div>
+        <div class="scard c-red">
+          <div class="scard-title">Stop Loss siempre</div>
+          <div class="scard-text">Defines ANTES de entrar dónde es tu pérdida máxima. Se ejecuta automáticamente. Nunca operes sin él.</div>
+          <span class="scard-tag tag-must">LEY ABSOLUTA</span>
+        </div>
+        <div class="scard c-orange">
+          <div class="scard-title">Ratio 1:2 mínimo</div>
+          <div class="scard-text">Si arriesgas $0.30, busca ganar $0.60 mínimo. Con 50% de aciertos y este ratio, eres rentable matemáticamente.</div>
+          <span class="scard-tag tag-must">Siempre</span>
+        </div>
+        <div class="scard c-orange">
+          <div class="scard-title">Límite diario de pérdida</div>
+          <div class="scard-text">Define antes cuánto puedes perder en el día. Con $15 → máximo $1 de pérdida diaria. Si llegas, paras y listo.</div>
+          <span class="scard-tag tag-must">Siempre</span>
+        </div>
+      </div>
+      <div class="warn">
+        <strong>Con $15, esto es lo que debes calcular:</strong><br>
+        Capital: $15 · Riesgo máximo por trade: $0.30 (2%) · Target mínimo: $0.60 · Límite diario: $1.00<br>
+        Si llegas al límite diario → cierras todo, revisas qué pasó, y mañana vuelves con la mente fría.
+      </div>
+    </div>
+  </div>
+
+  <div class="bcard">
+    <div class="bcard-head">
+      <div class="bcard-icon">🧠</div>
+      <div>
+        <div class="bcard-title">Pilar 3 — Psicología</div>
+        <div class="bcard-sub">El 80% del trading es mental · La parte más difícil</div>
+      </div>
+    </div>
+    <div class="bcard-body">
+      <div class="grid2">
+        <div class="scard c-purple">
+          <div class="scard-title">Miedo</div>
+          <div class="scard-text">Te paraliza. Ves una señal perfecta pero no entras. O sales muy temprano de una operación ganadora por miedo a perder lo ganado.</div>
+        </div>
+        <div class="scard c-purple">
+          <div class="scard-title">Codicia</div>
+          <div class="scard-text">Tienes ganancia pero quieres más. No cierras cuando deberías. El mercado revierte y terminas perdiendo. Mata a muchos traders.</div>
+        </div>
+        <div class="scard c-purple">
+          <div class="scard-title">Revenge Trading</div>
+          <div class="scard-text">Perdiste $1 y quieres recuperarlo YA. Entras sin plan. Pierdes $5. La espiral más peligrosa del trading. Para el día cuando llegues al límite.</div>
+        </div>
+        <div class="scard c-purple">
+          <div class="scard-title">FOMO</div>
+          <div class="scard-text">Fear Of Missing Out. Ves que algo sube fuerte y entras tarde sin análisis por miedo a perderte la subida. Casi siempre termina mal.</div>
+        </div>
+      </div>
+      <div class="quote">
+        "El mercado puede permanecer irracional más tiempo del que tú puedes permanecer solvente. Sigue tu plan, no tus emociones."
+        <cite>— Principio fundamental del trading</cite>
+      </div>
+    </div>
+  </div>
+
+  <div class="bcard">
+    <div class="bcard-head">
+      <div class="bcard-icon">📝</div>
+      <div>
+        <div class="bcard-title">Pilar 4 — El diario de trading</div>
+        <div class="bcard-sub">Tu arma secreta para mejorar · Obligatorio desde el día 1</div>
+      </div>
+    </div>
+    <div class="bcard-body">
+      <div class="note"><strong>Por qué es tan importante:</strong> Los traders rentables analizan sus operaciones pasadas para mejorar. Sin diario, repites los mismos errores indefinidamente. Con diario, aprendes de cada trade.</div>
+      <ul class="cl">
+        <li><strong>Fecha y activo:</strong> SPY · AAPL · BTC · lo que operaste</li>
+        <li><strong>Por qué entraste:</strong> qué señales viste exactamente</li>
+        <li><strong>Stop Loss y Target:</strong> los números exactos que definiste</li>
+        <li><strong>Resultado:</strong> ganancia o pérdida en dólares y porcentaje</li>
+        <li><strong>¿Seguiste el plan?</strong> Sí o No — y si no, por qué</li>
+        <li><strong>Emoción que sentiste:</strong> ansioso, tranquilo, codicioso, impaciente</li>
+        <li><strong>Qué aprendiste:</strong> una frase concreta de aprendizaje</li>
+      </ul>
+      <div class="note"><strong>Revisa el diario cada domingo.</strong> Busca: ¿En qué horario ganas más? ¿Qué activos te funcionan? ¿Cuándo cometes más errores? Las respuestas están en tus datos.</div>
+    </div>
+  </div>
+
+  <div class="bcard">
+    <div class="bcard-head">
+      <div class="bcard-icon">📊</div>
+      <div>
+        <div class="bcard-title">Pilar 5 — Backtesting y mejora continua</div>
+        <div class="bcard-sub">Probar antes de arriesgar · El método científico aplicado al trading</div>
+      </div>
+    </div>
+    <div class="bcard-body">
+      <div class="grid2">
+        <div class="scard c-lime">
+          <div class="scard-title">¿Qué es backtesting?</div>
+          <div class="scard-text">Probar tu estrategia sobre datos históricos. "Si hubiera aplicado esta estrategia en los últimos 6 meses, ¿hubiera ganado o perdido?" La respuesta honesta te dice si vale la pena.</div>
+        </div>
+        <div class="scard c-lime">
+          <div class="scard-title">Cómo hacerlo sin código</div>
+          <div class="scard-text">En TradingView, ve hacia atrás en el gráfico, aplica tus reglas de entrada y anota los resultados. 30 trades históricos te dan una idea muy clara de la estrategia.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- ESTRATEGIAS SIMPLES -->
+  <div class="sh"><span class="sh-num">CAP 03</span><span class="sh-title">3 estrategias para empezar con $10-15</span></div>
+
+  <div class="strat">
+    <div class="strat-title">Estrategia 1 — Ruptura de rango matutino</div>
+    <div class="strat-sub">La favorita del video de Craig · Swing + Day trading · Fácil de entender</div>
+    <div class="strat-body">
+      <div class="strat-item">
+        <div class="strat-item-label">Instrumento</div>
+        <div class="strat-item-val">SPY, QQQ o una acción con mucho volumen</div>
+      </div>
+      <div class="strat-item">
+        <div class="strat-item-label">Qué buscar</div>
+        <div class="strat-item-val">Un rango de precio en las primeras 30 min. Cuando lo rompe con volumen → entras</div>
+      </div>
+      <div class="strat-item">
+        <div class="strat-item-label">Stop Loss</div>
+        <div class="strat-item-val">Debajo del rango que rompió (soporte)</div>
+      </div>
+      <div class="strat-item">
+        <div class="strat-item-label">Target</div>
+        <div class="strat-item-val">2x el tamaño del rango hacia arriba</div>
+      </div>
+      <div class="strat-item">
+        <div class="strat-item-label">Timeframe</div>
+        <div class="strat-item-val">5 min para entrada · 15 min para contexto</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="strat">
+    <div class="strat-title">Estrategia 2 — Rebote en soporte / VWAP</div>
+    <div class="strat-sub">Swing trading · La más sencilla · Alta probabilidad</div>
+    <div class="strat-body">
+      <div class="strat-item">
+        <div class="strat-item-label">Instrumento</div>
+        <div class="strat-item-val">SPY · Cualquier acción con tendencia alcista clara</div>
+      </div>
+      <div class="strat-item">
+        <div class="strat-item-label">Qué buscar</div>
+        <div class="strat-item-val">Precio baja hasta el VWAP o soporte conocido y muestra vela de rebote (Hammer o Engulfing)</div>
+      </div>
+      <div class="strat-item">
+        <div class="strat-item-label">Stop Loss</div>
+        <div class="strat-item-val">Debajo del mínimo de la vela de rebote</div>
+      </div>
+      <div class="strat-item">
+        <div class="strat-item-label">Target</div>
+        <div class="strat-item-val">Próxima resistencia visible en el gráfico</div>
+      </div>
+      <div class="strat-item">
+        <div class="strat-item-label">Confirmar con</div>
+        <div class="strat-item-val">Volumen aumentando + EMA9 sobre EMA21</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="strat">
+    <div class="strat-title">Estrategia 3 — Seguir tendencia con EMA</div>
+    <div class="strat-sub">La más segura para principiantes · Opera con el mercado, no contra él</div>
+    <div class="strat-body">
+      <div class="strat-item">
+        <div class="strat-item-label">Instrumento</div>
+        <div class="strat-item-val">SPY · ETFs de sectores · Acciones en tendencia clara</div>
+      </div>
+      <div class="strat-item">
+        <div class="strat-item-label">Condición de entrada</div>
+        <div class="strat-item-val">EMA9 cruza por encima de EMA21 + precio sobre VWAP</div>
+      </div>
+      <div class="strat-item">
+        <div class="strat-item-label">Stop Loss</div>
+        <div class="strat-item-val">Debajo de la EMA21 o debajo del VWAP</div>
+      </div>
+      <div class="strat-item">
+        <div class="strat-item-label">Target</div>
+        <div class="strat-item-val">Trailing stop — dejas correr mientras EMA9 siga sobre EMA21</div>
+      </div>
+      <div class="strat-item">
+        <div class="strat-item-label">Salida</div>
+        <div class="strat-item-val">Cuando EMA9 cruza por debajo de EMA21</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- DÓNDE Y CON CUÁNTO -->
+  <div class="sh"><span class="sh-num">CAP 04</span><span class="sh-title">Dónde operar con $10–15</span></div>
+
+  <div class="price-row">
+    <div class="price-box">
+      <div class="price-amount">$0</div>
+      <div class="price-label">Demo primero</div>
+      <div class="price-desc">eToro demo con $100,000 virtuales. Practica sin riesgo. Obligatorio las primeras semanas.</div>
+    </div>
+    <div class="price-box featured">
+      <div class="price-amount">$10</div>
+      <div class="price-label">Tu primera cuenta real</div>
+      <div class="price-desc">HAPI permite empezar desde $5 USD. Con $10 puedes comprar fracciones de SPY, AAPL y ETFs.</div>
+    </div>
+    <div class="price-box">
+      <div class="price-amount">$15</div>
+      <div class="price-label">Máximo recomendado</div>
+      <div class="price-desc">Con $15 tienes suficiente para practicar estrategias reales y aprender sin el miedo de perder mucho.</div>
+    </div>
+  </div>
+
+  <div class="broker-grid">
+    <div class="broker-card best">
+      <div class="broker-logo">🦊</div>
+      <div class="broker-name">HAPI</div>
+      <div class="broker-min">Desde $5 USD · Colombia ✅</div>
+      <div class="broker-pros">Diseñado para Latinoamérica. Fracciones de acciones. Depósitos en pesos. Fácil y regulado.</div>
+    </div>
+    <div class="broker-card">
+      <div class="broker-logo">🌐</div>
+      <div class="broker-name">eToro</div>
+      <div class="broker-min">Demo gratis · Real desde $50</div>
+      <div class="broker-pros">Demo ilimitado con $100k virtuales. Copy trading. Ideal para aprender antes de poner dinero real.</div>
+    </div>
+    <div class="broker-card">
+      <div class="broker-logo">📊</div>
+      <div class="broker-name">XTB</div>
+      <div class="broker-min">Demo gratis · 0% comisión</div>
+      <div class="broker-pros">Plataforma profesional. Demo completo. Comisión 0% hasta €100k/mes. Disponible en Colombia.</div>
+    </div>
+    <div class="broker-card">
+      <div class="broker-logo">🟡</div>
+      <div class="broker-name">Binance</div>
+      <div class="broker-min">Ya lo tienes ✅</div>
+      <div class="broker-pros">Para cripto ya lo tienes. Activa el modo spot. No uses futuros todavía.</div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Con $10-15 en cripto (Binance):</strong> Puedes practicar compra/venta spot de BTC o ETH. Fracciones pequeñas. NO uses futuros ni apalancamiento — con $15 puedes perder todo en segundos.
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- TU PRIMERA OPERACIÓN REAL -->
+  <div class="sh"><span class="sh-num">CAP 05</span><span class="sh-title">Tu primera operación paso a paso</span></div>
+
+  <div class="note"><strong>Haz esto primero en demo, exactamente igual.</strong> Cuando lo hagas bien 10 veces en demo, hazlo con dinero real. El proceso es idéntico.</div>
+
+  <div class="trade-flow">
+    <div class="tf-step">
+      <div class="tf-num">1</div>
+      <div class="tf-text"><strong>Revisa el calendario económico.</strong> Entra a investing.com/economic-calendar. ¿Hay noticias grandes hoy? Si hay FED, inflación o empleo → ten cuidado con el riesgo ese día.</div>
+    </div>
+    <div class="tf-step">
+      <div class="tf-num">2</div>
+      <div class="tf-text"><strong>Abre TradingView y busca SPY.</strong> Pon el gráfico en 15 minutos. Agrega VWAP, EMA9, EMA21 y Volumen. Mira la tendencia general del día.</div>
+    </div>
+    <div class="tf-step">
+      <div class="tf-num">3</div>
+      <div class="tf-text"><strong>Identifica la zona.</strong> ¿Está el precio sobre o bajo el VWAP? ¿Hay un soporte o resistencia cercana? ¿La EMA9 está sobre la EMA21? Anota lo que ves.</div>
+    </div>
+    <div class="tf-step">
+      <div class="tf-num">4</div>
+      <div class="tf-text"><strong>Define tu plan ANTES de entrar.</strong> Escribe: precio de entrada, stop loss exacto, target exacto. Calcula el ratio — si no es mínimo 1:2, NO entras y buscas otra oportunidad.</div>
+    </div>
+    <div class="tf-step">
+      <div class="tf-num">5</div>
+      <div class="tf-text"><strong>Calcula el tamaño.</strong> Con $15 y riesgo del 2% = $0.30 de pérdida máxima. Divide $0.30 entre la distancia a tu stop loss para saber cuántas fracciones comprar.</div>
+    </div>
+    <div class="tf-step">
+      <div class="tf-num">6</div>
+      <div class="tf-text"><strong>Entra y pon el stop loss inmediatamente.</strong> No esperes. El stop loss va puesto 2 segundos después de entrar. Sin excepción.</div>
+    </div>
+    <div class="tf-step">
+      <div class="tf-num">7</div>
+      <div class="tf-text"><strong>No toques nada.</strong> Deja que el mercado trabaje. Si llega al stop loss → se cierra solo. Si llega al target → cierras manualmente y celebras con cabeza fría.</div>
+    </div>
+    <div class="tf-step">
+      <div class="tf-num">8</div>
+      <div class="tf-text"><strong>Registra en el diario.</strong> Ganes o pierdas, escribe todo. Fue tu primera operación real. Analiza qué hiciste bien y qué mejorar.</div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- DONDE APRENDER: YOUTUBE -->
+  <div class="sh"><span class="sh-num">CAP 06</span><span class="sh-title">Los mejores recursos para aprender</span></div>
+
+  <div class="yt-grid">
+    <div class="yt-card">
+      <div class="yt-icon">📺</div>
+      <div class="yt-channel">YouTube · En inglés</div>
+      <div class="yt-name">Craig Percoco</div>
+      <div class="yt-why">El del video que estás viendo. Day trading desde $100. Estrategias simples y repetibles. 1-2 horas al día.</div>
+      <span class="yt-tag">El que ya estás viendo ✅</span>
+    </div>
+    <div class="yt-card">
+      <div class="yt-icon">📺</div>
+      <div class="yt-channel">YouTube · En inglés</div>
+      <div class="yt-name">Rayner Teo</div>
+      <div class="yt-why">El mejor canal de análisis técnico del mundo. Explica TODO con ejemplos visuales claros. Gratis y completísimo.</div>
+      <span class="yt-tag">rayner teo</span>
+    </div>
+    <div class="yt-card">
+      <div class="yt-icon">📺</div>
+      <div class="yt-channel">YouTube · En español</div>
+      <div class="yt-name">Nadie Me Enseñó Esto</div>
+      <div class="yt-why">Educación financiera y trading en español. Muy claro para principiantes latinoamericanos. Empieza aquí si prefieres español.</div>
+      <span class="yt-tag">En español ✅</span>
+    </div>
+    <div class="yt-card">
+      <div class="yt-icon">📺</div>
+      <div class="yt-channel">YouTube · En español</div>
+      <div class="yt-name">The Trading Crack</div>
+      <div class="yt-why">Trader español con años de experiencia. Estrategias reales, psicología, gestión de riesgo. Muy práctico.</div>
+      <span class="yt-tag">En español ✅</span>
+    </div>
+    <div class="yt-card">
+      <div class="yt-icon">📺</div>
+      <div class="yt-channel">YouTube · En inglés</div>
+      <div class="yt-name">Umar Ashraf</div>
+      <div class="yt-why">Day trader que opera en vivo y muestra sus entradas reales. Muy educativo ver cómo piensa un trader rentable.</div>
+      <span class="yt-tag">En vivo</span>
+    </div>
+    <div class="yt-card">
+      <div class="yt-icon">📺</div>
+      <div class="yt-channel">Podcast · En español</div>
+      <div class="yt-name">Words of Rizdom</div>
+      <div class="yt-why">El canal de Fabio Valentini que viste. Traders profesionales operando en vivo. El nivel más avanzado.</div>
+      <span class="yt-tag">Ya lo conoces ✅</span>
+    </div>
+  </div>
+
+  <div class="sh" style="margin-top:32px"><span class="sh-num">HERRAMIENTAS</span><span class="sh-title">Tu kit gratuito completo</span></div>
+
+  <table class="t">
+    <thead><tr><th>Herramienta</th><th>Para qué</th><th>Costo</th><th>Prioridad</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="hl">TradingView</td>
+        <td>Ver gráficos, indicadores, backtesting manual</td>
+        <td class="g">Gratis</td>
+        <td class="g">Hoy mismo</td>
+      </tr>
+      <tr>
+        <td class="hl">Investing.com</td>
+        <td>Calendario económico — noticias que mueven el mercado</td>
+        <td class="g">Gratis</td>
+        <td class="g">Cada mañana</td>
+      </tr>
+      <tr>
+        <td class="hl">eToro Demo</td>
+        <td>Practicar operaciones sin dinero real</td>
+        <td class="g">Gratis</td>
+        <td class="g">Esta semana</td>
+      </tr>
+      <tr>
+        <td class="hl">HAPI</td>
+        <td>Broker para operar con $10-15 reales</td>
+        <td class="g">Gratis registrarse</td>
+        <td class="y">Mes 1</td>
+      </tr>
+      <tr>
+        <td class="hl">Finviz</td>
+        <td>Ver qué acciones se mueven más en el día</td>
+        <td class="g">Gratis</td>
+        <td class="y">Mes 2</td>
+      </tr>
+      <tr>
+        <td class="hl">Barchart</td>
+        <td>Options flow — detectar movimientos institucionales</td>
+        <td class="g">Gratis</td>
+        <td class="y">Mes 3</td>
+      </tr>
+      <tr>
+        <td class="hl">Cuaderno físico o Notion</td>
+        <td>Tu diario de trading</td>
+        <td class="g">Gratis</td>
+        <td class="g">HOY</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sep"></div>
+
+  <!-- ERRORES -->
+  <div class="sh"><span class="sh-num">CAP 07</span><span class="sh-title">Los errores que destruyen a principiantes</span></div>
+
+  <div class="mistakes">
+    <div class="mistake">
+      <div class="mistake-n">01</div>
+      <div class="mistake-title">Operar sin stop loss</div>
+      <div class="mistake-text">"Va a regresar." No regresa. Una operación sin stop puede borrar semanas de trabajo.</div>
+    </div>
+    <div class="mistake">
+      <div class="mistake-n">02</div>
+      <div class="mistake-title">Poner demasiado en un trade</div>
+      <div class="mistake-text">Con $15, meter $14 en una operación. Si sale mal, perdiste casi todo. Máximo 2% por trade.</div>
+    </div>
+    <div class="mistake">
+      <div class="mistake-n">03</div>
+      <div class="mistake-title">Revenge Trading</div>
+      <div class="mistake-text">Perder y querer recuperar rápido. Entrar sin análisis. Perder más. El ciclo más destructivo.</div>
+    </div>
+    <div class="mistake">
+      <div class="mistake-n">04</div>
+      <div class="mistake-title">Copiar trades sin entender</div>
+      <div class="mistake-text">Ver que alguien gana y copiarlo sin saber por qué. Cuando va mal, no sabes cuándo salir.</div>
+    </div>
+    <div class="mistake">
+      <div class="mistake-n">05</div>
+      <div class="mistake-title">Sobreoperar</div>
+      <div class="mistake-text">Hacer 20 trades en un día por aburrimiento. Más trades ≠ más dinero. Calidad sobre cantidad.</div>
+    </div>
+    <div class="mistake">
+      <div class="mistake-n">06</div>
+      <div class="mistake-title">Ignorar el contexto</div>
+      <div class="mistake-text">Operar el día que la FED habla sin saberlo. El mercado se vuelve impredecible. Revisa el calendario.</div>
+    </div>
+    <div class="mistake">
+      <div class="mistake-n">07</div>
+      <div class="mistake-title">Pasar a real muy rápido</div>
+      <div class="mistake-text">Después de 3 días en demo sentirte listo. El dinero real cambia todo. Mínimo 4 semanas en demo.</div>
+    </div>
+    <div class="mistake">
+      <div class="mistake-n">08</div>
+      <div class="mistake-title">No llevar diario</div>
+      <div class="mistake-text">Operar sin registrar nada. Repites los mismos errores semanas después porque no los analizaste.</div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- CRONOGRAMA REAL -->
+  <div class="sh"><span class="sh-num">CAP 08</span><span class="sh-title">Tu plan real semana a semana</span></div>
+
+  <div class="bcard">
+    <div class="bcard-body">
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-time"><div class="tl-month">HOY</div></div>
+          <div class="tl-body">
+            <div class="tl-title">Descarga TradingView · Abre el gráfico de SPY · Observa 15 minutos</div>
+            <div class="tl-desc">No hagas nada. Solo mira las velas verdes y rojas. Tu cerebro empieza a aprender con solo observar.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"><div class="tl-month">Semana 1</div></div>
+          <div class="tl-body">
+            <div class="tl-title">Velas japonesas completo</div>
+            <div class="tl-desc">YouTube: busca "velas japonesas trading español". Identifica 20 patrones en gráficos históricos de SPY. Hammer, Engulfing, Doji, Pin Bar, Shooting Star.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"><div class="tl-month">Semana 2</div></div>
+          <div class="tl-body">
+            <div class="tl-title">Soporte, resistencia y tendencias</div>
+            <div class="tl-desc">Marca niveles en 5 gráficos diferentes. Aprende a identificar la tendencia. Revisa la apertura de NY (9:30am Colombia) sin operar — solo observa.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"><div class="tl-month">Semana 3</div></div>
+          <div class="tl-body">
+            <div class="tl-title">Indicadores: EMA, VWAP, RSI, Volumen</div>
+            <div class="tl-desc">Configura TradingView con EMA9, EMA21, VWAP y Volumen. Aprende a leerlos juntos en el gráfico de SPY.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"><div class="tl-month">Semana 4</div></div>
+          <div class="tl-body">
+            <div class="tl-title">Gestión de riesgo completa + abrir eToro demo</div>
+            <div class="tl-desc">Aprende la regla del 1-2%, el ratio 1:2, el stop loss. Abre cuenta demo en eToro. Practica calculando tamaños de posición.</div>
+          </div>
+        </div>
+        <div class="tl-item tl-milestone">
+          <div class="tl-time"><div class="tl-month">🏆 Mes 1</div></div>
+          <div class="tl-body">
+            <div class="tl-title">Primera operación en demo</div>
+            <div class="tl-desc">Aplica todo lo aprendido. Una operación real en eToro demo con todas las reglas. Registra en tu diario.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"><div class="tl-month">Mes 2</div></div>
+          <div class="tl-body">
+            <div class="tl-title">20-30 operaciones en demo con diario</div>
+            <div class="tl-desc">Opera en demo todos los días. Lleva el diario religiosamente. Revisa resultados cada semana. ¿Qué funciona? ¿Qué no?</div>
+          </div>
+        </div>
+        <div class="tl-item tl-milestone">
+          <div class="tl-time"><div class="tl-month">🏆 Mes 3</div></div>
+          <div class="tl-body">
+            <div class="tl-title">Si eres rentable en demo → $10-15 reales</div>
+            <div class="tl-desc">Abre HAPI con $10-15. Exactamente las mismas reglas que en demo. No busques grandes ganancias — busca ejecutar bien el proceso.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"><div class="tl-month">Mes 4–6</div></div>
+          <div class="tl-body">
+            <div class="tl-title">Consistencia · Ajuste · Crecimiento</div>
+            <div class="tl-desc">Analiza tu diario mensualmente. Ajusta lo que no funciona. Si eres consistentemente rentable, aumenta el capital gradualmente.</div>
+          </div>
+        </div>
+        <div class="tl-item tl-milestone">
+          <div class="tl-time"><div class="tl-month">🏆 Mes 6+</div></div>
+          <div class="tl-body">
+            <div class="tl-title">Trading como ingreso complementario + pensar en el bot</div>
+            <div class="tl-desc">Con 6 meses de experiencia real, ya tienes la base para pensar en automatizar. Aquí empieza el camino del bot.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- LIBROS -->
+  <div class="sh"><span class="sh-num">LECTURA</span><span class="sh-title">3 libros que van a cambiar tu forma de pensar</span></div>
+
+  <div class="grid3">
+    <div class="scard c-purple">
+      <span class="scard-emoji">📚</span>
+      <div class="scard-title">Trading en la Zona</div>
+      <div class="scard-text"><em>Mark Douglas</em> — El libro de psicología de trading más importante del mundo. Cambia tu relación con el dinero, el riesgo y la incertidumbre.</div>
+      <span class="scard-tag tag-must">Obligatorio #1</span>
+    </div>
+    <div class="scard c-purple">
+      <span class="scard-emoji">📚</span>
+      <div class="scard-title">Market Wizards</div>
+      <div class="scard-text"><em>Jack Schwager</em> — Entrevistas con los mejores traders del mundo. Cada uno comparte su mentalidad y método. Inspirador e instructivo.</div>
+      <span class="scard-tag tag-must">Obligatorio #2</span>
+    </div>
+    <div class="scard c-purple">
+      <span class="scard-emoji">📚</span>
+      <div class="scard-title">Padre Rico Padre Pobre</div>
+      <div class="scard-text"><em>Robert Kiyosaki</em> — Para entender el dinero y los activos. Cambia la mentalidad antes de entrar al mercado. El mejor primer libro.</div>
+      <span class="scard-tag tag-key">Empieza aquí</span>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- ACCIÓN HOY -->
+  <div class="sh"><span class="sh-num">ACCIÓN</span><span class="sh-title">Lo que haces HOY — en los próximos 30 minutos</span></div>
+
+  <div class="bcard">
+    <div class="bcard-body">
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">1</div>
+          <div class="step-body">
+            <div class="step-title">Descarga TradingView en tu celular</div>
+            <div class="step-desc">Gratis en App Store y Google Play. Crea cuenta gratis. Busca "SPY". Cambia a gráfico de 15 minutos.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div class="step-body">
+            <div class="step-title">Agrega estos indicadores</div>
+            <div class="step-desc">EMA 9 · EMA 21 · VWAP · Volumen. Están todos en el buscador de indicadores de TradingView. Todos gratis.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div class="step-body">
+            <div class="step-title">Observa SPY por 15 minutos sin hacer nada</div>
+            <div class="step-desc">Identifica velas verdes y rojas. Ve si el precio está sobre o bajo el VWAP. Nota dónde el precio rebota. Solo observa.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">4</div>
+          <div class="step-body">
+            <div class="step-title">Crea tu diario de trading</div>
+            <div class="step-desc">Un cuaderno físico o una nota en el celular. Escribe hoy: "Día 1. Observé SPY. Vi [lo que viste]. Aprendí [algo concreto]."</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">5</div>
+          <div class="step-body">
+            <div class="step-title">Termina el video de Craig Percoco</div>
+            <div class="step-desc">El que tienes en la TV. Toma notas. Sus 3 pasos son exactamente el marco correcto para empezar.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-big">EL MOMENTO DE<br><em>EMPEZAR ES HOY</em></div>
+    <p class="footer-sub" style="color:var(--text2);font-size:13px;max-width:480px;margin:16px auto 0;font-family:'Archivo',sans-serif;line-height:1.7">
+      No necesitas saber más para dar el primer paso. Solo necesitas abrir TradingView, poner SPY, y empezar a observar. El conocimiento viene con la práctica.
+    </p>
+    <div class="footer-sub" style="margin-top:24px">🇨🇴 COLOMBIA · TRADING DESDE $10 · SIN EXCUSAS</div>
+    <div class="footer-sub" style="margin-top:12px;opacity:0.3;font-size:10px">El trading implica riesgo. Nunca inviertas más de lo que puedas permitirte perder.</div>
+  </div>
+
+</div>
+</body>
+</html>
